@@ -29,18 +29,18 @@
         private void InitializeComponent()
         {
             this.recipeListPanel = new System.Windows.Forms.Panel();
+            this.recipeList = new System.Windows.Forms.DataGridView();
+            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.level = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.showRecipePanel = new System.Windows.Forms.Panel();
             this.funcBarPanel = new System.Windows.Forms.Panel();
             this.selectTable = new System.Windows.Forms.TableLayoutPanel();
             this.CategoryCombo = new System.Windows.Forms.ComboBox();
             this.orderByCombo = new System.Windows.Forms.ComboBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.recipeList = new System.Windows.Forms.DataGridView();
-            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.level = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.recipeListPanel.SuspendLayout();
-            this.selectTable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.recipeList)).BeginInit();
+            this.selectTable.SuspendLayout();
             this.SuspendLayout();
             // 
             // recipeListPanel
@@ -51,63 +51,6 @@
             this.recipeListPanel.Name = "recipeListPanel";
             this.recipeListPanel.Size = new System.Drawing.Size(300, 707);
             this.recipeListPanel.TabIndex = 0;
-            // 
-            // showRecipePanel
-            // 
-            this.showRecipePanel.Location = new System.Drawing.Point(316, 10);
-            this.showRecipePanel.Name = "showRecipePanel";
-            this.showRecipePanel.Size = new System.Drawing.Size(718, 707);
-            this.showRecipePanel.TabIndex = 1;
-            // 
-            // funcBarPanel
-            // 
-            this.funcBarPanel.Location = new System.Drawing.Point(1041, 10);
-            this.funcBarPanel.Name = "funcBarPanel";
-            this.funcBarPanel.Size = new System.Drawing.Size(121, 707);
-            this.funcBarPanel.TabIndex = 2;
-            // 
-            // selectTable
-            // 
-            this.selectTable.ColumnCount = 2;
-            this.selectTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 62.33333F));
-            this.selectTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 37.66667F));
-            this.selectTable.Controls.Add(this.CategoryCombo, 0, 0);
-            this.selectTable.Controls.Add(this.orderByCombo, 1, 0);
-            this.selectTable.Location = new System.Drawing.Point(10, 10);
-            this.selectTable.Name = "selectTable";
-            this.selectTable.RowCount = 1;
-            this.selectTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.56391F));
-            this.selectTable.Size = new System.Drawing.Size(300, 43);
-            this.selectTable.TabIndex = 0;
-            // 
-            // CategoryCombo
-            // 
-            this.CategoryCombo.Font = new System.Drawing.Font("굴림", 14F);
-            this.CategoryCombo.FormattingEnabled = true;
-            this.CategoryCombo.Location = new System.Drawing.Point(3, 3);
-            this.CategoryCombo.Name = "CategoryCombo";
-            this.CategoryCombo.Size = new System.Drawing.Size(180, 36);
-            this.CategoryCombo.TabIndex = 0;
-            // 
-            // orderByCombo
-            // 
-            this.orderByCombo.DisplayMember = "난이도";
-            this.orderByCombo.Font = new System.Drawing.Font("굴림", 14F);
-            this.orderByCombo.FormattingEnabled = true;
-            this.orderByCombo.Items.AddRange(new object[] {
-            "난이도",
-            "시간"});
-            this.orderByCombo.Location = new System.Drawing.Point(189, 3);
-            this.orderByCombo.Name = "orderByCombo";
-            this.orderByCombo.Size = new System.Drawing.Size(108, 36);
-            this.orderByCombo.TabIndex = 1;
-            // 
-            // panel1
-            // 
-            this.panel1.Location = new System.Drawing.Point(0, 663);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(300, 44);
-            this.panel1.TabIndex = 1;
             // 
             // recipeList
             // 
@@ -148,6 +91,64 @@
             this.level.ReadOnly = true;
             this.level.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
+            // panel1
+            // 
+            this.panel1.Location = new System.Drawing.Point(0, 663);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(300, 44);
+            this.panel1.TabIndex = 1;
+            // 
+            // showRecipePanel
+            // 
+            this.showRecipePanel.Location = new System.Drawing.Point(316, 10);
+            this.showRecipePanel.Name = "showRecipePanel";
+            this.showRecipePanel.Size = new System.Drawing.Size(718, 707);
+            this.showRecipePanel.TabIndex = 1;
+            // 
+            // funcBarPanel
+            // 
+            this.funcBarPanel.Location = new System.Drawing.Point(1041, 10);
+            this.funcBarPanel.Name = "funcBarPanel";
+            this.funcBarPanel.Size = new System.Drawing.Size(121, 707);
+            this.funcBarPanel.TabIndex = 2;
+            // 
+            // selectTable
+            // 
+            this.selectTable.ColumnCount = 2;
+            this.selectTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 62.33333F));
+            this.selectTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 37.66667F));
+            this.selectTable.Controls.Add(this.CategoryCombo, 0, 0);
+            this.selectTable.Controls.Add(this.orderByCombo, 1, 0);
+            this.selectTable.Location = new System.Drawing.Point(10, 10);
+            this.selectTable.Name = "selectTable";
+            this.selectTable.RowCount = 1;
+            this.selectTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.56391F));
+            this.selectTable.Size = new System.Drawing.Size(300, 43);
+            this.selectTable.TabIndex = 0;
+            // 
+            // CategoryCombo
+            // 
+            this.CategoryCombo.Font = new System.Drawing.Font("굴림", 14F);
+            this.CategoryCombo.FormattingEnabled = true;
+            this.CategoryCombo.Location = new System.Drawing.Point(3, 3);
+            this.CategoryCombo.Name = "CategoryCombo";
+            this.CategoryCombo.Size = new System.Drawing.Size(180, 36);
+            this.CategoryCombo.TabIndex = 0;
+            this.CategoryCombo.SelectedIndexChanged += new System.EventHandler(this.CategoryCombo_SelectedIndexChanged);
+            // 
+            // orderByCombo
+            // 
+            this.orderByCombo.DisplayMember = "난이도";
+            this.orderByCombo.Font = new System.Drawing.Font("굴림", 14F);
+            this.orderByCombo.FormattingEnabled = true;
+            this.orderByCombo.Items.AddRange(new object[] {
+            "난이도",
+            "시간"});
+            this.orderByCombo.Location = new System.Drawing.Point(189, 3);
+            this.orderByCombo.Name = "orderByCombo";
+            this.orderByCombo.Size = new System.Drawing.Size(108, 36);
+            this.orderByCombo.TabIndex = 1;
+            // 
             // UI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
@@ -160,8 +161,8 @@
             this.Name = "UI";
             this.Text = "Form1";
             this.recipeListPanel.ResumeLayout(false);
-            this.selectTable.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.recipeList)).EndInit();
+            this.selectTable.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

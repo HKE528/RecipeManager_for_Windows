@@ -49,7 +49,7 @@ namespace RecipeManager
             foreach(var file in files)
             {
                 fs = file.OpenRead();
-                StreamReader sr = new StreamReader(fs);
+                StreamReader sr = new StreamReader(fs, Encoding.Default);
                 List<string> content = new List<string>();
 
                 content.Add(file.Name);
