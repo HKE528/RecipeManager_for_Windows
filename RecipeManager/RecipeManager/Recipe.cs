@@ -22,7 +22,7 @@ namespace RecipeManager
     {
 
 
-        private List<List<string>> _recipeContent;
+        private List<List<string>> _recipeContents;
         private Dictionary<string, string> recipeTitle;
 
         public Recipe()
@@ -30,19 +30,22 @@ namespace RecipeManager
             updateAllRecipeContents();
         }
 
-
-        public List<List<string>> recipeContent
+        public List<List<string>> recipeContents
         {
             get
             {
-                return _recipeContent;
+                return _recipeContents;
+            }
+            set
+            {
+                updateAllRecipeContents();
             }
         }
 
         //레시피 파일 가져와 초기화
         private void updateAllRecipeContents()
         {
-            _recipeContent = new FileIO().GetFileContent();
+            _recipeContents = new FileIO().GetFileContent();
         }
 
         //조건 만족하는 레시피 반환
@@ -50,7 +53,7 @@ namespace RecipeManager
         {
             recipeTitle = new Dictionary<string, string>();
 
-            foreach (var recipe in _recipeContent)
+            foreach (var recipe in _recipeContents)
             {
                 string targetCategory = recipe[(int)DataIndex.Category].Split(',')[0];
 
@@ -65,6 +68,25 @@ namespace RecipeManager
             }
 
             return recipeTitle;
+        }
+
+        public string GetSelectName(int index)
+        {
+            List<string> names = recipeTitle.Keys.ToList<string>();
+
+            return names[index];
+        }
+
+        public List<string> GetSelectContent(string name)
+        {
+            foreach(var recipe in recipeContents)
+            {
+                Console.WriteLine(recipe[(int)DataIndex.Name]);
+                if (recipe[(int)DataIndex.Name] == name)
+                    return recipe;
+            }
+
+            return null;
         }
     }
 }

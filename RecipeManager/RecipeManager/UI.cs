@@ -30,7 +30,7 @@ namespace RecipeManager
         //카테고리 세팅
         private void setCategory()
         {
-            List<List<string>> recipeContent = recipe.recipeContent;
+            List<List<string>> recipeContent = recipe.recipeContents;
 
             CategoryCombo.Items.Add("전체");
             foreach (var recipe in recipeContent)
@@ -46,30 +46,31 @@ namespace RecipeManager
         {
             recipeList.Rows.Clear();
 
-            string category = CategoryCombo.SelectedItem.ToString();
-            int index = orderByCombo.SelectedIndex;
-
-            Dictionary<string, string> recipeTitle = recipe.GetRecipeList(category, index);
+            Dictionary<string, string> recipeTitle = SetRecipeTitle();
             foreach (var name in recipeTitle.Keys)
             {
                 recipeList.Rows.Add(name, recipeTitle[name]);
             }
-
         }
         private void showRecipeList(string targetName)
         {
             recipeList.Rows.Clear();
 
-            string category = CategoryCombo.SelectedItem.ToString();
-            int index = orderByCombo.SelectedIndex;
-
-            Dictionary<string, string> recipeTitle = recipe.GetRecipeList(category, index);
+            Dictionary<string, string> recipeTitle = SetRecipeTitle();
             foreach (var name in recipeTitle.Keys)
             {
                 if (name.Contains(targetName))
                     recipeList.Rows.Add(name, recipeTitle[name]);
             }
 
+        }
+
+        private Dictionary<string, string> SetRecipeTitle()
+        {
+            string category = CategoryCombo.SelectedItem.ToString();
+            int index = orderByCombo.SelectedIndex;
+
+            return recipe.GetRecipeList(category, index);
         }
 
         private void CategoryCombo_SelectedIndexChanged(object sender, EventArgs e)
@@ -101,9 +102,36 @@ namespace RecipeManager
                 btnSearch_Click(sender, e);
             }
         }
+
+        //리스트에서 선택시 해당 레시피 표시
         private void recipeList_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
+            int selectRow = e.RowIndex;
+            string curSelectName = recipe.GetSelectName(selectRow);
+            List<string> curSelectContent = recipe.GetSelectContent(curSelectName);
+            if(curSelectContent == null)
+            {
+                MessageBox.Show("Error : 선택한 레시피의 데이터를 블러올 수 없습니다.");
+                return;
+            }
 
+            int i = 1;
+            lbRecipe.Text += " 주재표" + Environment.NewLine;
+            foreach(var food in curSelectContent[(int)DataIndex.Main].Split(','))
+            {
+                lbRecipe.Text += (i++).ToString() + ". " + food + Environment.NewLine;
+            }
+
+            
+            if (curSelectContent[(int)DataIndex.Sub].Split(',')[0] != "")
+            {
+                lbRecipe.Text += Environment.NewLine + Environment.NewLine;
+                lbRecipe.Text += "부재료" + Environment.NewLine;
+                foreach (var food in curSelectContent[(int)DataIndex.Sub].Split(','))
+                {
+                    lbRecipe.Text += (i++).ToString() + ". " + food + Environment.NewLine;
+                }
+            }
         }
     }
 }

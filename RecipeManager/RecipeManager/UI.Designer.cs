@@ -194,7 +194,6 @@
             this.lbRecipe.Name = "lbRecipe";
             this.lbRecipe.Size = new System.Drawing.Size(582, 701);
             this.lbRecipe.TabIndex = 0;
-            this.lbRecipe.Text = "label1";
             // 
             // UI
             // 
