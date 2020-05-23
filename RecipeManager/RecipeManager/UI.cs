@@ -60,6 +60,7 @@ namespace RecipeManager
             }
         }
 
+        //레시피 보이기
         private void showRecipeList()
         {
             recipeList.Rows.Clear();
@@ -89,6 +90,36 @@ namespace RecipeManager
             }
         }
 
+        private void showRecipeList(string targetName)
+        {
+            recipeList.Rows.Clear();
+
+            string category = CategoryCombo.SelectedItem.ToString();
+            int index = orderByCombo.SelectedIndex;
+
+            if (recipeContent == null)
+            {
+                recipeList.Rows.Add("새로운 레시피를 추가해주세요");
+            }
+            else
+            {
+                foreach (var recipe in recipeContent)
+                {
+                    string targetCategory = recipe[(int)DataIndex.Category].Split(',')[0];
+
+                    if (category != targetCategory && category != "전체")
+                        continue;
+
+                    string name = recipe[(int)DataIndex.Name].Split('.')[0];
+                    string sub = index == 0 ? recipe[(int)DataIndex.Level].Split(',')[0] :
+                        recipe[(int)DataIndex.Time].Split(',')[0];
+
+                    if(name.Contains(targetName))
+                        recipeList.Rows.Add(name, sub);
+                }
+            }
+        }
+
         private void CategoryCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
             //카테고리별 리스트 출력
@@ -106,7 +137,17 @@ namespace RecipeManager
         {
             string name = tbSearch.Text;
 
-            
+            if (name != "")
+                showRecipeList(name);
+            else
+                showRecipeList();
+        }
+        private void tbSearch_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                btnSearch_Click(sender, e);
+            }
         }
     }
 }
