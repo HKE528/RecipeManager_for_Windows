@@ -54,6 +54,7 @@
             // 
             // recipeList
             // 
+            this.recipeList.AllowUserToAddRows = false;
             this.recipeList.ColumnHeadersHeight = 34;
             this.recipeList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.recipeList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
