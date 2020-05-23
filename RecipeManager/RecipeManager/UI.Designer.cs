@@ -33,17 +33,19 @@
             this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.level = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnSearch = new System.Windows.Forms.Button();
             this.tbSearch = new System.Windows.Forms.TextBox();
-            this.showRecipePanel = new System.Windows.Forms.Panel();
             this.funcBarPanel = new System.Windows.Forms.Panel();
             this.selectTable = new System.Windows.Forms.TableLayoutPanel();
             this.CategoryCombo = new System.Windows.Forms.ComboBox();
             this.orderByCombo = new System.Windows.Forms.ComboBox();
-            this.btnSearch = new System.Windows.Forms.Button();
+            this.showRecipePanel = new System.Windows.Forms.TableLayoutPanel();
+            this.lbRecipe = new System.Windows.Forms.Label();
             this.recipeListPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.recipeList)).BeginInit();
             this.panel1.SuspendLayout();
             this.selectTable.SuspendLayout();
+            this.showRecipePanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // recipeListPanel
@@ -73,6 +75,7 @@
             this.recipeList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.recipeList.Size = new System.Drawing.Size(300, 616);
             this.recipeList.TabIndex = 2;
+            this.recipeList.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.recipeList_CellMouseClick);
             // 
             // name
             // 
@@ -103,6 +106,16 @@
             this.panel1.Size = new System.Drawing.Size(300, 44);
             this.panel1.TabIndex = 1;
             // 
+            // btnSearch
+            // 
+            this.btnSearch.Location = new System.Drawing.Point(231, 5);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(66, 35);
+            this.btnSearch.TabIndex = 1;
+            this.btnSearch.Text = "검색";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
             // tbSearch
             // 
             this.tbSearch.Font = new System.Drawing.Font("굴림", 12F);
@@ -111,13 +124,6 @@
             this.tbSearch.Size = new System.Drawing.Size(222, 35);
             this.tbSearch.TabIndex = 0;
             this.tbSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbSearch_KeyDown);
-            // 
-            // showRecipePanel
-            // 
-            this.showRecipePanel.Location = new System.Drawing.Point(316, 10);
-            this.showRecipePanel.Name = "showRecipePanel";
-            this.showRecipePanel.Size = new System.Drawing.Size(718, 707);
-            this.showRecipePanel.TabIndex = 1;
             // 
             // funcBarPanel
             // 
@@ -164,24 +170,40 @@
             this.orderByCombo.TabIndex = 1;
             this.orderByCombo.SelectedIndexChanged += new System.EventHandler(this.orderByCombo_SelectedIndexChanged);
             // 
-            // btnSearch
+            // showRecipePanel
             // 
-            this.btnSearch.Location = new System.Drawing.Point(231, 5);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(66, 35);
-            this.btnSearch.TabIndex = 1;
-            this.btnSearch.Text = "검색";
-            this.btnSearch.UseVisualStyleBackColor = true;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            this.showRecipePanel.ColumnCount = 3;
+            this.showRecipePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.090909F));
+            this.showRecipePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 81.81818F));
+            this.showRecipePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.090909F));
+            this.showRecipePanel.Controls.Add(this.lbRecipe, 1, 0);
+            this.showRecipePanel.Location = new System.Drawing.Point(316, 10);
+            this.showRecipePanel.Name = "showRecipePanel";
+            this.showRecipePanel.RowCount = 1;
+            this.showRecipePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.showRecipePanel.Size = new System.Drawing.Size(719, 707);
+            this.showRecipePanel.TabIndex = 3;
+            // 
+            // lbRecipe
+            // 
+            this.lbRecipe.AutoSize = true;
+            this.lbRecipe.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbRecipe.Font = new System.Drawing.Font("굴림", 12F);
+            this.lbRecipe.Location = new System.Drawing.Point(68, 3);
+            this.lbRecipe.Margin = new System.Windows.Forms.Padding(3);
+            this.lbRecipe.Name = "lbRecipe";
+            this.lbRecipe.Size = new System.Drawing.Size(582, 701);
+            this.lbRecipe.TabIndex = 0;
+            this.lbRecipe.Text = "label1";
             // 
             // UI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1174, 729);
+            this.Controls.Add(this.showRecipePanel);
             this.Controls.Add(this.selectTable);
             this.Controls.Add(this.funcBarPanel);
-            this.Controls.Add(this.showRecipePanel);
             this.Controls.Add(this.recipeListPanel);
             this.Name = "UI";
             this.Text = "Form1";
@@ -190,6 +212,8 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.selectTable.ResumeLayout(false);
+            this.showRecipePanel.ResumeLayout(false);
+            this.showRecipePanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -197,7 +221,6 @@
         #endregion
 
         private System.Windows.Forms.Panel recipeListPanel;
-        private System.Windows.Forms.Panel showRecipePanel;
         private System.Windows.Forms.Panel funcBarPanel;
         private System.Windows.Forms.TableLayoutPanel selectTable;
         private System.Windows.Forms.ComboBox CategoryCombo;
@@ -208,6 +231,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn level;
         private System.Windows.Forms.TextBox tbSearch;
         private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.TableLayoutPanel showRecipePanel;
+        private System.Windows.Forms.Label lbRecipe;
     }
 }
 

@@ -13,44 +13,25 @@ namespace RecipeManager
 {
     public partial class UI : Form
     {
-        List<List<string>> recipeContent;
-
-        enum DataIndex
-        {
-            Name,
-            Category,
-            Level,
-            Time,
-            Main,
-            Sub,
-            RecipeStart
-        };
+        Recipe recipe;
 
         public UI()
         {
             InitializeComponent();
 
-            InitData();
-        }
+            recipe = new Recipe();
 
-        private void InitData()
-        {
-            updateAllRecipeContents();
             setCategory();
 
             CategoryCombo.SelectedIndex = 0;
             orderByCombo.SelectedIndex = 0;
         }
 
-        //레시피 가져오기
-        private void updateAllRecipeContents()
-        {
-            recipeContent = new FileIO().GetFileContent();
-        }
-
         //카테고리 세팅
         private void setCategory()
         {
+            List<List<string>> recipeContent = recipe.recipeContent;
+
             CategoryCombo.Items.Add("전체");
             foreach (var recipe in recipeContent)
             {
@@ -68,28 +49,13 @@ namespace RecipeManager
             string category = CategoryCombo.SelectedItem.ToString();
             int index = orderByCombo.SelectedIndex;
 
-            if (recipeContent == null)
+            Dictionary<string, string> recipeTitle = recipe.GetRecipeList(category, index);
+            foreach (var name in recipeTitle.Keys)
             {
-                recipeList.Rows.Add("새로운 레시피를 추가해주세요");
+                recipeList.Rows.Add(name, recipeTitle[name]);
             }
-            else
-            {
-                foreach (var recipe in recipeContent)
-                {
-                    string targetCategory = recipe[(int)DataIndex.Category].Split(',')[0];
 
-                    if (category != targetCategory && category != "전체")
-                        continue;
-
-                    string name = recipe[(int)DataIndex.Name].Split('.')[0];
-                    string sub = index == 0 ? recipe[(int)DataIndex.Level].Split(',')[0] :
-                        recipe[(int)DataIndex.Time].Split(',')[0];
-
-                    recipeList.Rows.Add(name, sub);
-                }
-            }
         }
-
         private void showRecipeList(string targetName)
         {
             recipeList.Rows.Clear();
@@ -97,27 +63,13 @@ namespace RecipeManager
             string category = CategoryCombo.SelectedItem.ToString();
             int index = orderByCombo.SelectedIndex;
 
-            if (recipeContent == null)
+            Dictionary<string, string> recipeTitle = recipe.GetRecipeList(category, index);
+            foreach (var name in recipeTitle.Keys)
             {
-                recipeList.Rows.Add("새로운 레시피를 추가해주세요");
+                if (name.Contains(targetName))
+                    recipeList.Rows.Add(name, recipeTitle[name]);
             }
-            else
-            {
-                foreach (var recipe in recipeContent)
-                {
-                    string targetCategory = recipe[(int)DataIndex.Category].Split(',')[0];
 
-                    if (category != targetCategory && category != "전체")
-                        continue;
-
-                    string name = recipe[(int)DataIndex.Name].Split('.')[0];
-                    string sub = index == 0 ? recipe[(int)DataIndex.Level].Split(',')[0] :
-                        recipe[(int)DataIndex.Time].Split(',')[0];
-
-                    if(name.Contains(targetName))
-                        recipeList.Rows.Add(name, sub);
-                }
-            }
         }
 
         private void CategoryCombo_SelectedIndexChanged(object sender, EventArgs e)
@@ -148,6 +100,10 @@ namespace RecipeManager
             {
                 btnSearch_Click(sender, e);
             }
+        }
+        private void recipeList_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+
         }
     }
 }
