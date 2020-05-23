@@ -61,7 +61,7 @@ namespace RecipeManager
         }
 
         //레시피 리스트 보이기
-        private void showRecipeList(string category)
+        private void showRecipeList(string category, int index)
         {
             recipeList.Rows.Clear();
 
@@ -74,9 +74,10 @@ namespace RecipeManager
                 foreach (var recipe in recipeContent)
                 {
                     string name = recipe[(int)DataIndex.Name].Split('.')[0];
-                    string level = recipe[(int)DataIndex.Level].Split(',')[0];
+                    string sub = index == 0? recipe[(int)DataIndex.Level].Split(',')[0] : 
+                        recipe[(int)DataIndex.Time].Split(',')[0];
 
-                    recipeList.Rows.Add(name, level);
+                    recipeList.Rows.Add(name, sub);
                 }
             }
             else
@@ -87,9 +88,10 @@ namespace RecipeManager
                     if (cate == category)
                     {
                         string name = recipe[(int)DataIndex.Name].Split('.')[0];
-                        string level = recipe[(int)DataIndex.Level].Split(',')[0];
+                        string sub = index == 0 ? recipe[(int)DataIndex.Level].Split(',')[0] : 
+                            recipe[(int)DataIndex.Time].Split(',')[0];
 
-                        recipeList.Rows.Add(name, level);
+                        recipeList.Rows.Add(name, sub);
                     }
                 }
             }
@@ -103,8 +105,21 @@ namespace RecipeManager
         private void CategoryCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
             //카테고리별 리스트 출력
+            setList();
+        }
+
+        private void orderByCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //난이도, 시간 선택에 따라 표시
+            setList();
+        }
+
+        private void setList()
+        {
             string category = CategoryCombo.SelectedItem.ToString();
-            showRecipeList(category);
+            int index = orderByCombo.SelectedIndex;
+
+            showRecipeList(category, index);
         }
     }
 }

@@ -149,6 +149,7 @@
             this.orderByCombo.Name = "orderByCombo";
             this.orderByCombo.Size = new System.Drawing.Size(108, 36);
             this.orderByCombo.TabIndex = 1;
+            this.orderByCombo.SelectedIndexChanged += new System.EventHandler(this.orderByCombo_SelectedIndexChanged);
             // 
             // UI
             // 
