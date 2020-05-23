@@ -60,66 +60,53 @@ namespace RecipeManager
             }
         }
 
-        //레시피 리스트 보이기
-        private void showRecipeList(string category, int index)
+        private void showRecipeList()
         {
             recipeList.Rows.Clear();
+
+            string category = CategoryCombo.SelectedItem.ToString();
+            int index = orderByCombo.SelectedIndex;
 
             if (recipeContent == null)
             {
                 recipeList.Rows.Add("새로운 레시피를 추가해주세요");
             }
-            else if(category == "전체")
+            else
             {
                 foreach (var recipe in recipeContent)
                 {
+                    string targetCategory = recipe[(int)DataIndex.Category].Split(',')[0];
+
+                    if (category != targetCategory && category != "전체")
+                        continue;
+
                     string name = recipe[(int)DataIndex.Name].Split('.')[0];
-                    string sub = index == 0? recipe[(int)DataIndex.Level].Split(',')[0] : 
+                    string sub = index == 0 ? recipe[(int)DataIndex.Level].Split(',')[0] :
                         recipe[(int)DataIndex.Time].Split(',')[0];
 
                     recipeList.Rows.Add(name, sub);
                 }
             }
-            else
-            {
-                foreach (var recipe in recipeContent)
-                {
-                    string cate = recipe[(int)DataIndex.Category].Split(',')[0];
-                    if (cate == category)
-                    {
-                        string name = recipe[(int)DataIndex.Name].Split('.')[0];
-                        string sub = index == 0 ? recipe[(int)DataIndex.Level].Split(',')[0] : 
-                            recipe[(int)DataIndex.Time].Split(',')[0];
-
-                        recipeList.Rows.Add(name, sub);
-                    }
-                }
-            }
-        }
-
-        private void recipeList_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
 
         private void CategoryCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
             //카테고리별 리스트 출력
-            setList();
+            showRecipeList();
         }
 
         private void orderByCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
             //난이도, 시간 선택에 따라 표시
-            setList();
+            showRecipeList();
         }
 
-        private void setList()
+        //검색
+        private void btnSearch_Click(object sender, EventArgs e)
         {
-            string category = CategoryCombo.SelectedItem.ToString();
-            int index = orderByCombo.SelectedIndex;
+            string name = tbSearch.Text;
 
-            showRecipeList(category, index);
+            
         }
     }
 }

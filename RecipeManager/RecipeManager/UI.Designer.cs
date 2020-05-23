@@ -33,13 +33,16 @@
             this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.level = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.tbSearch = new System.Windows.Forms.TextBox();
             this.showRecipePanel = new System.Windows.Forms.Panel();
             this.funcBarPanel = new System.Windows.Forms.Panel();
             this.selectTable = new System.Windows.Forms.TableLayoutPanel();
             this.CategoryCombo = new System.Windows.Forms.ComboBox();
             this.orderByCombo = new System.Windows.Forms.ComboBox();
+            this.btnSearch = new System.Windows.Forms.Button();
             this.recipeListPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.recipeList)).BeginInit();
+            this.panel1.SuspendLayout();
             this.selectTable.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -70,7 +73,6 @@
             this.recipeList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.recipeList.Size = new System.Drawing.Size(300, 616);
             this.recipeList.TabIndex = 2;
-            this.recipeList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.recipeList_CellContentClick);
             // 
             // name
             // 
@@ -94,10 +96,20 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnSearch);
+            this.panel1.Controls.Add(this.tbSearch);
             this.panel1.Location = new System.Drawing.Point(0, 663);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(300, 44);
             this.panel1.TabIndex = 1;
+            // 
+            // tbSearch
+            // 
+            this.tbSearch.Font = new System.Drawing.Font("굴림", 12F);
+            this.tbSearch.Location = new System.Drawing.Point(3, 5);
+            this.tbSearch.Name = "tbSearch";
+            this.tbSearch.Size = new System.Drawing.Size(222, 35);
+            this.tbSearch.TabIndex = 0;
             // 
             // showRecipePanel
             // 
@@ -151,6 +163,16 @@
             this.orderByCombo.TabIndex = 1;
             this.orderByCombo.SelectedIndexChanged += new System.EventHandler(this.orderByCombo_SelectedIndexChanged);
             // 
+            // btnSearch
+            // 
+            this.btnSearch.Location = new System.Drawing.Point(231, 5);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(66, 35);
+            this.btnSearch.TabIndex = 1;
+            this.btnSearch.Text = "검색";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
             // UI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
@@ -164,6 +186,8 @@
             this.Text = "Form1";
             this.recipeListPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.recipeList)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.selectTable.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -181,6 +205,8 @@
         private System.Windows.Forms.DataGridView recipeList;
         private System.Windows.Forms.DataGridViewTextBoxColumn name;
         private System.Windows.Forms.DataGridViewTextBoxColumn level;
+        private System.Windows.Forms.TextBox tbSearch;
+        private System.Windows.Forms.Button btnSearch;
     }
 }
 
