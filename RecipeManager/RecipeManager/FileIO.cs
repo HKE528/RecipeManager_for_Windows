@@ -52,7 +52,7 @@ namespace RecipeManager
                 StreamReader sr = new StreamReader(fs, Encoding.Default);
                 List<string> content = new List<string>();
 
-                content.Add(file.Name);
+                content.Add(file.Name.Split('.')[0]);
                 while (!sr.EndOfStream)
                 {
                     content.Add(sr.ReadLine());
