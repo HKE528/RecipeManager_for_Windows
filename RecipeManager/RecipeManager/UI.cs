@@ -13,7 +13,7 @@ namespace RecipeManager
 {
     public partial class UI : Form
     {
-        Recipe recipe;
+        private Recipe recipe;
 
         public UI()
         {
@@ -104,33 +104,62 @@ namespace RecipeManager
         }
 
         //리스트에서 선택시 해당 레시피 표시
+        List<string> curSelectContent;
         private void recipeList_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
+            btnNextContent.Enabled = true;
+
             int selectRow = e.RowIndex;
             string curSelectName = recipe.GetSelectName(selectRow);
-            List<string> curSelectContent = recipe.GetSelectContent(curSelectName);
+            curSelectContent = recipe.GetSelectContent(curSelectName);
+
             if(curSelectContent == null)
             {
                 MessageBox.Show("Error : 선택한 레시피의 데이터를 블러올 수 없습니다.");
                 return;
             }
 
+            showFoodmaterial();
+        }
+        private void showFoodmaterial()
+        {
             int i = 1;
+            lbRecipe.Text = "";
+
             lbRecipe.Text += " 주재표" + Environment.NewLine;
-            foreach(var food in curSelectContent[(int)DataIndex.Main].Split(','))
+            foreach (var food in curSelectContent[(int)DataIndex.Main].Split(','))
             {
                 lbRecipe.Text += (i++).ToString() + ". " + food + Environment.NewLine;
             }
-
-            
             if (curSelectContent[(int)DataIndex.Sub].Split(',')[0] != "")
             {
+                i = 1;
                 lbRecipe.Text += Environment.NewLine + Environment.NewLine;
-                lbRecipe.Text += "부재료" + Environment.NewLine;
-                foreach (var food in curSelectContent[(int)DataIndex.Sub].Split(','))
+                lbRecipe.Text += " 소스" + Environment.NewLine;
+                foreach (var food in curSelectContent[(int)DataIndex.Sub].Split('"')[1].Split(','))
                 {
-                    lbRecipe.Text += (i++).ToString() + ". " + food + Environment.NewLine;
+                    if(food != "")
+                        lbRecipe.Text += (i++).ToString() + ". " + food + Environment.NewLine;
                 }
+            }
+        }
+        private void btnPreContent_Click(object sender, EventArgs e)
+        {
+            btnPreContent.Enabled = false;
+            btnNextContent.Enabled = true;
+
+            showFoodmaterial();
+        }
+        private void btnNextContent_Click(object sender, EventArgs e)
+        {
+            btnPreContent.Enabled = true;
+            btnNextContent.Enabled = false;
+
+            lbRecipe.Text = "";
+            
+            for(int i = 1, j = (int)DataIndex.RecipeStart; j < curSelectContent.Count(); i++, j++)
+            {
+                lbRecipe.Text += i.ToString() + ". " + curSelectContent[j].Split(',')[0] + Environment.NewLine;
             }
         }
     }

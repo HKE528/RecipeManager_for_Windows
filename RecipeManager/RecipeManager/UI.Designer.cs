@@ -41,6 +41,8 @@
             this.orderByCombo = new System.Windows.Forms.ComboBox();
             this.showRecipePanel = new System.Windows.Forms.TableLayoutPanel();
             this.lbRecipe = new System.Windows.Forms.Label();
+            this.btnPreContent = new System.Windows.Forms.Button();
+            this.btnNextContent = new System.Windows.Forms.Button();
             this.recipeListPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.recipeList)).BeginInit();
             this.panel1.SuspendLayout();
@@ -60,6 +62,9 @@
             // recipeList
             // 
             this.recipeList.AllowUserToAddRows = false;
+            this.recipeList.AllowUserToDeleteRows = false;
+            this.recipeList.AllowUserToResizeColumns = false;
+            this.recipeList.AllowUserToResizeRows = false;
             this.recipeList.ColumnHeadersHeight = 34;
             this.recipeList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.recipeList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -70,6 +75,7 @@
             this.recipeList.ReadOnly = true;
             this.recipeList.RowHeadersVisible = false;
             this.recipeList.RowHeadersWidth = 62;
+            this.recipeList.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.recipeList.RowTemplate.Height = 30;
             this.recipeList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.recipeList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -127,9 +133,9 @@
             // 
             // funcBarPanel
             // 
-            this.funcBarPanel.Location = new System.Drawing.Point(1041, 10);
+            this.funcBarPanel.Location = new System.Drawing.Point(1038, 10);
             this.funcBarPanel.Name = "funcBarPanel";
-            this.funcBarPanel.Size = new System.Drawing.Size(121, 707);
+            this.funcBarPanel.Size = new System.Drawing.Size(124, 707);
             this.funcBarPanel.TabIndex = 2;
             // 
             // selectTable
@@ -177,6 +183,8 @@
             this.showRecipePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 81.81818F));
             this.showRecipePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.090909F));
             this.showRecipePanel.Controls.Add(this.lbRecipe, 1, 0);
+            this.showRecipePanel.Controls.Add(this.btnPreContent, 0, 0);
+            this.showRecipePanel.Controls.Add(this.btnNextContent, 2, 0);
             this.showRecipePanel.Location = new System.Drawing.Point(316, 10);
             this.showRecipePanel.Name = "showRecipePanel";
             this.showRecipePanel.RowCount = 1;
@@ -188,12 +196,42 @@
             // 
             this.lbRecipe.AutoSize = true;
             this.lbRecipe.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbRecipe.Font = new System.Drawing.Font("굴림", 12F);
+            this.lbRecipe.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(1)), true);
+            this.lbRecipe.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.lbRecipe.Location = new System.Drawing.Point(68, 3);
             this.lbRecipe.Margin = new System.Windows.Forms.Padding(3);
             this.lbRecipe.Name = "lbRecipe";
             this.lbRecipe.Size = new System.Drawing.Size(582, 701);
             this.lbRecipe.TabIndex = 0;
+            this.lbRecipe.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // btnPreContent
+            // 
+            this.btnPreContent.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPreContent.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnPreContent.Enabled = false;
+            this.btnPreContent.Font = new System.Drawing.Font("굴림", 40F);
+            this.btnPreContent.Location = new System.Drawing.Point(3, 3);
+            this.btnPreContent.Name = "btnPreContent";
+            this.btnPreContent.Size = new System.Drawing.Size(59, 701);
+            this.btnPreContent.TabIndex = 1;
+            this.btnPreContent.Text = "<";
+            this.btnPreContent.UseVisualStyleBackColor = true;
+            this.btnPreContent.Click += new System.EventHandler(this.btnPreContent_Click);
+            // 
+            // btnNextContent
+            // 
+            this.btnNextContent.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnNextContent.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnNextContent.Enabled = false;
+            this.btnNextContent.Font = new System.Drawing.Font("굴림", 40F);
+            this.btnNextContent.Location = new System.Drawing.Point(656, 3);
+            this.btnNextContent.Name = "btnNextContent";
+            this.btnNextContent.Size = new System.Drawing.Size(60, 701);
+            this.btnNextContent.TabIndex = 2;
+            this.btnNextContent.Text = ">";
+            this.btnNextContent.UseVisualStyleBackColor = true;
+            this.btnNextContent.Click += new System.EventHandler(this.btnNextContent_Click);
             // 
             // UI
             // 
@@ -232,6 +270,8 @@
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.TableLayoutPanel showRecipePanel;
         private System.Windows.Forms.Label lbRecipe;
+        private System.Windows.Forms.Button btnPreContent;
+        private System.Windows.Forms.Button btnNextContent;
     }
 }
 
