@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -104,16 +105,18 @@ namespace RecipeManager
         }
 
         //리스트에서 선택시 해당 레시피 표시
-        List<string> curSelectContent;
+        List<string> curContent;
         private void recipeList_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
+            lbRecipe.Visible = true;
+            createRecipe.Visible = false;
             btnNextContent.Enabled = true;
 
             int selectRow = e.RowIndex;
             string curSelectName = recipe.GetSelectName(selectRow);
-            curSelectContent = recipe.GetSelectContent(curSelectName);
+            curContent = recipe.GetSelectContent(curSelectName);
 
-            if(curSelectContent == null)
+            if(curContent == null)
             {
                 MessageBox.Show("Error : 선택한 레시피의 데이터를 블러올 수 없습니다.");
                 return;
@@ -121,22 +124,28 @@ namespace RecipeManager
 
             showFoodmaterial();
         }
+
+        int page;
+        int maxPage;
         private void showFoodmaterial()
         {
+            page = 1;
+            maxPage = 2;
             int i = 1;
+
             lbRecipe.Text = "";
 
             lbRecipe.Text += " 주재표" + Environment.NewLine;
-            foreach (var food in curSelectContent[(int)DataIndex.Main].Split(','))
+            foreach (var food in curContent[(int)DataIndex.Main].Split(','))
             {
                 lbRecipe.Text += (i++).ToString() + ". " + food + Environment.NewLine;
             }
-            if (curSelectContent[(int)DataIndex.Sub].Split(',')[0] != "")
+            if (curContent[(int)DataIndex.Sub].Split(',')[0] != "")
             {
                 i = 1;
                 lbRecipe.Text += Environment.NewLine + Environment.NewLine;
                 lbRecipe.Text += " 소스" + Environment.NewLine;
-                foreach (var food in curSelectContent[(int)DataIndex.Sub].Split('"')[1].Split(','))
+                foreach (var food in curContent[(int)DataIndex.Sub].Split('"')[1].Split(','))
                 {
                     if(food != "")
                         lbRecipe.Text += (i++).ToString() + ". " + food + Environment.NewLine;
@@ -145,22 +154,95 @@ namespace RecipeManager
         }
         private void btnPreContent_Click(object sender, EventArgs e)
         {
-            btnPreContent.Enabled = false;
+            page--;
+            if(page == 1)
+                btnPreContent.Enabled = false;
             btnNextContent.Enabled = true;
 
-            showFoodmaterial();
+            //레시피 보이기
+            if (lbRecipe.Visible == true)
+                showFoodmaterial();
+
+            //레시피 추가 상태 일때
+            else if (createRecipe.Visible == true)
+            {
+                switch (page)
+                {
+                    case 1:
+                        setMainFood.Visible = false;
+                        break;
+                    case 2:
+                        setSubFood.Visible = false;
+                        break;
+                    case 3:
+                        setRecipe.Visible = false;
+                        break;
+                }
+            }
         }
         private void btnNextContent_Click(object sender, EventArgs e)
         {
+            page++;
             btnPreContent.Enabled = true;
-            btnNextContent.Enabled = false;
+            if(page == maxPage)
+                btnNextContent.Enabled = false;
 
-            lbRecipe.Text = "";
-            
-            for(int i = 1, j = (int)DataIndex.RecipeStart; j < curSelectContent.Count(); i++, j++)
+            //레시피 보이기 일때
+            if (lbRecipe.Visible == true)
             {
-                lbRecipe.Text += i.ToString() + ". " + curSelectContent[j].Split(',')[0] + Environment.NewLine;
+                lbRecipe.Text = "";
+
+                for (int i = 1, j = (int)DataIndex.RecipeStart; j < curContent.Count(); i++, j++)
+                {
+                    lbRecipe.Text += i.ToString() + ". " + curContent[j].Split(',')[0] + Environment.NewLine;
+                }
             }
+            //레시피 추가 상태 일때
+            else if (createRecipe.Visible == true)
+            {
+                switch (page)
+                {
+                    case 2:
+                        setMainFood.Visible = true;
+                        break;
+                    case 3:
+                        setSubFood.Visible = true;
+                        break;
+                    case 4:
+                        setRecipe.Visible = true;
+                        break;
+                }
+            }
+        }
+
+        private void btnCreateRecipe_Click(object sender, EventArgs e)
+        {
+            CreateRecipe mainFoodPanel = new CreateRecipe(setMainFood, "주재료");
+            CreateRecipe subFoodPanel = new CreateRecipe(setSubFood, "소스");
+            CreateRecipe recipePanel = new CreateRecipe(setRecipe, "레시피");
+
+            maxPage = 4;
+            page = 1;
+
+            lbRecipe.Visible = false;
+            createRecipe.Visible = true;
+
+            btnPreContent.Enabled = false;
+            btnNextContent.Enabled = true;
+
+            setMainFood.Visible = false;
+            setSubFood.Visible = false;
+            setRecipe.Visible = false;
+        }
+
+        private void createRecipe_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void setMainFood_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

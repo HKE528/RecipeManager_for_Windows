@@ -81,7 +81,6 @@ namespace RecipeManager
         {
             foreach(var recipe in recipeContents)
             {
-                Console.WriteLine(recipe[(int)DataIndex.Name]);
                 if (recipe[(int)DataIndex.Name] == name)
                     return recipe;
             }
