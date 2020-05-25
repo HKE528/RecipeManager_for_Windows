@@ -35,12 +35,15 @@ namespace RecipeManager
             List<List<string>> recipeContent = recipe.recipeContents;
 
             CategoryCombo.Items.Add("전체");
-            foreach (var recipe in recipeContent)
+            if (recipeContent != null)
             {
-                string category = recipe[(int)DataIndex.Category].Split(',')[0];
+                foreach (var recipe in recipeContent)
+                {
+                    string category = recipe[(int)DataIndex.Category].Split(',')[0];
 
-                if(!CategoryCombo.Items.Contains(category))
-                    CategoryCombo.Items.Add(category);
+                    if (!CategoryCombo.Items.Contains(category))
+                        CategoryCombo.Items.Add(category);
+                }
             }
         }
 
@@ -50,9 +53,13 @@ namespace RecipeManager
             recipeList.Rows.Clear();
 
             Dictionary<string, string> recipeTitle = SetRecipeTitle();
-            foreach (var name in recipeTitle.Keys)
+
+            if (recipeTitle != null)
             {
-                recipeList.Rows.Add(name, recipeTitle[name]);
+                foreach (var name in recipeTitle.Keys)
+                {
+                    recipeList.Rows.Add(name, recipeTitle[name]);
+                }
             }
         }
         private void showRecipeList(string targetName)

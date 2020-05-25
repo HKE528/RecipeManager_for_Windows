@@ -47,6 +47,9 @@ namespace RecipeManager
         {
             recipeTitle = new Dictionary<string, string>();
 
+            if (_recipeContents == null)
+                return null;
+
             foreach (var recipe in _recipeContents)
             {
                 string targetCategory = recipe[(int)DataIndex.Category].Split(',')[0];
