@@ -5,12 +5,14 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace RecipeManager
 {
     class FileIO
     {
         string curDir;
+        string path;
         DirectoryInfo dir;
         FileInfo[] files;
         List<List<string>> fileContent;
@@ -63,6 +65,52 @@ namespace RecipeManager
             }
 
             return fileContent;
+        }
+
+        public void SaveFile(RecipeData data)
+        {
+            string path = curDir + @"\recipe\" + data.name + ".csv";
+
+            FileStream fs;
+            StreamWriter sw;
+            try
+            {
+                fs = new FileStream(path, FileMode.Create);
+                sw = new StreamWriter(fs, Encoding.Default);
+
+                sw.WriteLine(data.category);
+                sw.WriteLine(data.level);
+                sw.WriteLine(data.time);
+
+                string foods = "";
+                foreach(string item in data.mainFood)
+                {
+                    foods += item + ",";
+                }
+                sw.WriteLine(foods);
+
+                string sub = "\"";
+                foreach(string item in data.subFood)
+                {
+                    sub += item + ",";
+                }
+                sub += "\"";
+                sw.WriteLine(sub);
+
+                foreach(string item in data.content)
+                {
+                    sw.WriteLine(item);
+                }
+
+                sw.Close();
+                fs.Close();
+
+                MessageBox.Show("저장 했습니다.");
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show("저장에 실패했습니다.");
+            }
         }
     }
 }

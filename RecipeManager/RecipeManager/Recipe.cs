@@ -20,8 +20,6 @@ namespace RecipeManager
 
     class Recipe
     {
-
-
         private List<List<string>> _recipeContents;
         private Dictionary<string, string> recipeTitle;
 

@@ -220,7 +220,7 @@ namespace RecipeManager
         {
             CreateRecipe mainFoodPanel = new CreateRecipe(setMainFood, "주재료");
             CreateRecipe subFoodPanel = new CreateRecipe(setSubFood, "소스");
-            CreateRecipe recipePanel = new CreateRecipe(setRecipe, "레시피");
+            CreateRecipe recipePanel = new CreateRecipe("레시피", setRecipe, createRecipe, setMainFood, setSubFood);
 
             maxPage = 4;
             page = 1;
@@ -235,14 +235,10 @@ namespace RecipeManager
             setSubFood.Visible = false;
             setRecipe.Visible = false;
         }
-        private void saveRecipe()
-        {
-            Button save = new Button();
-            save.Name = "btnSave";
-            save.Text = "저장";
-            save.Location = new Point(180, 430);
 
-            //panel.Controls.Add(save);
+        private void setLevel_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
