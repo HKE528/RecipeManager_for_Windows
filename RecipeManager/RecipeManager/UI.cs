@@ -26,6 +26,7 @@ namespace RecipeManager
 
             CategoryCombo.SelectedIndex = 0;
             orderByCombo.SelectedIndex = 0;
+            lbRecipe.Text = "";
         }
 
         //카테고리 세팅
@@ -234,15 +235,14 @@ namespace RecipeManager
             setSubFood.Visible = false;
             setRecipe.Visible = false;
         }
-
-        private void createRecipe_Paint(object sender, PaintEventArgs e)
+        private void saveRecipe()
         {
+            Button save = new Button();
+            save.Name = "btnSave";
+            save.Text = "저장";
+            save.Location = new Point(180, 430);
 
-        }
-
-        private void setMainFood_Paint(object sender, PaintEventArgs e)
-        {
-
+            //panel.Controls.Add(save);
         }
     }
 }

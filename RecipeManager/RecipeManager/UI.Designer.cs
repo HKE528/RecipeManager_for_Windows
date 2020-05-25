@@ -255,7 +255,6 @@
             this.createRecipe.Size = new System.Drawing.Size(579, 701);
             this.createRecipe.TabIndex = 3;
             this.createRecipe.Visible = false;
-            this.createRecipe.Paint += new System.Windows.Forms.PaintEventHandler(this.createRecipe_Paint);
             // 
             // setMainFood
             // 
@@ -265,7 +264,6 @@
             this.setMainFood.Size = new System.Drawing.Size(572, 697);
             this.setMainFood.TabIndex = 1;
             this.setMainFood.Visible = false;
-            this.setMainFood.Paint += new System.Windows.Forms.PaintEventHandler(this.setMainFood_Paint);
             // 
             // setSubFood
             // 
