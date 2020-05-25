@@ -169,6 +169,7 @@ namespace RecipeManager
             {
                 switch (page)
                 {
+                    
                     case 1:
                         setMainFood.Visible = false;
                         break;
@@ -178,6 +179,22 @@ namespace RecipeManager
                     case 3:
                         setRecipe.Visible = false;
                         break;
+                        /*
+                    case 1:
+                        setMainFood.Visible = false;
+                        setSubFood.Visible = false;
+                        setRecipe.Visible = false;
+                        break;
+                    case 2:
+                        setMainFood.Visible = true;
+                        setSubFood.Visible = false;
+                        setRecipe.Visible = false;
+                        break;
+                    case 3:
+                        setMainFood.Visible = false;
+                        setSubFood.Visible = true;
+                        setRecipe.Visible = false;
+                        break;*/
                 }
             }
         }
@@ -201,6 +218,7 @@ namespace RecipeManager
             //레시피 추가 상태 일때
             else if (createRecipe.Visible == true)
             {
+                
                 switch (page)
                 {
                     case 2:
@@ -213,6 +231,25 @@ namespace RecipeManager
                         setRecipe.Visible = true;
                         break;
                 }
+                /*
+                switch (page)
+                {
+                    case 2:
+                        setMainFood.Visible = true;
+                        setSubFood.Visible = false;
+                        setRecipe.Visible = false;
+                        break;
+                    case 3:
+                        setMainFood.Visible = false;
+                        setSubFood.Visible = true;
+                        setRecipe.Visible = false;
+                        break;
+                    case 4:
+                        setMainFood.Visible = false;
+                        setSubFood.Visible = false;
+                        setRecipe.Visible = true;
+                        break;
+                }*/
             }
         }
 
@@ -220,7 +257,7 @@ namespace RecipeManager
         {
             CreateRecipe mainFoodPanel = new CreateRecipe(setMainFood, "주재료");
             CreateRecipe subFoodPanel = new CreateRecipe(setSubFood, "소스");
-            CreateRecipe recipePanel = new CreateRecipe("레시피", setRecipe, createRecipe, setMainFood, setSubFood);
+            CreateRecipe recipePanel = new CreateRecipe(this, "레시피", setRecipe, createRecipe, setMainFood, setSubFood);
 
             maxPage = 4;
             page = 1;
