@@ -64,8 +64,6 @@
             this.selectTable.SuspendLayout();
             this.panel2.SuspendLayout();
             this.createRecipe.SuspendLayout();
-            this.setMainFood.SuspendLayout();
-            this.setSubFood.SuspendLayout();
             this.inputRecipeTitle.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -248,6 +246,8 @@
             // 
             // createRecipe
             // 
+            this.createRecipe.Controls.Add(this.setRecipe);
+            this.createRecipe.Controls.Add(this.setSubFood);
             this.createRecipe.Controls.Add(this.setMainFood);
             this.createRecipe.Controls.Add(this.inputRecipeTitle);
             this.createRecipe.Location = new System.Drawing.Point(72, 5);
@@ -258,7 +258,6 @@
             // 
             // setMainFood
             // 
-            this.setMainFood.Controls.Add(this.setSubFood);
             this.setMainFood.Location = new System.Drawing.Point(0, 0);
             this.setMainFood.Name = "setMainFood";
             this.setMainFood.Size = new System.Drawing.Size(572, 697);
@@ -267,11 +266,10 @@
             // 
             // setSubFood
             // 
-            this.setSubFood.Controls.Add(this.setRecipe);
             this.setSubFood.Location = new System.Drawing.Point(0, 0);
             this.setSubFood.Name = "setSubFood";
             this.setSubFood.Size = new System.Drawing.Size(572, 697);
-            this.setSubFood.TabIndex = 2;
+            this.setSubFood.TabIndex = 1;
             this.setSubFood.Visible = false;
             // 
             // setRecipe
@@ -279,7 +277,7 @@
             this.setRecipe.Location = new System.Drawing.Point(0, 0);
             this.setRecipe.Name = "setRecipe";
             this.setRecipe.Size = new System.Drawing.Size(572, 697);
-            this.setRecipe.TabIndex = 2;
+            this.setRecipe.TabIndex = 1;
             this.setRecipe.Visible = false;
             // 
             // inputRecipeTitle
@@ -428,8 +426,6 @@
             this.selectTable.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.createRecipe.ResumeLayout(false);
-            this.setMainFood.ResumeLayout(false);
-            this.setSubFood.ResumeLayout(false);
             this.inputRecipeTitle.ResumeLayout(false);
             this.inputRecipeTitle.PerformLayout();
             this.ResumeLayout(false);

@@ -169,7 +169,7 @@ namespace RecipeManager
             {
                 switch (page)
                 {
-                    
+                    /*
                     case 1:
                         setMainFood.Visible = false;
                         break;
@@ -179,7 +179,7 @@ namespace RecipeManager
                     case 3:
                         setRecipe.Visible = false;
                         break;
-                        /*
+                      */
                     case 1:
                         setMainFood.Visible = false;
                         setSubFood.Visible = false;
@@ -194,7 +194,7 @@ namespace RecipeManager
                         setMainFood.Visible = false;
                         setSubFood.Visible = true;
                         setRecipe.Visible = false;
-                        break;*/
+                        break;
                 }
             }
         }
@@ -218,24 +218,24 @@ namespace RecipeManager
             //레시피 추가 상태 일때
             else if (createRecipe.Visible == true)
             {
-                
-                switch (page)
-                {
-                    case 2:
-                        setMainFood.Visible = true;
-                        break;
-                    case 3:
-                        setSubFood.Visible = true;
-                        break;
-                    case 4:
-                        setRecipe.Visible = true;
-                        break;
-                }
                 /*
                 switch (page)
                 {
                     case 2:
                         setMainFood.Visible = true;
+                        break;
+                    case 3:
+                        setSubFood.Visible = true;
+                        break;
+                    case 4:
+                        setRecipe.Visible = true;
+                        break;
+                }*/
+                
+                switch (page)
+                {
+                    case 2:
+                        setMainFood.Visible = true;
                         setSubFood.Visible = false;
                         setRecipe.Visible = false;
                         break;
@@ -249,7 +249,7 @@ namespace RecipeManager
                         setSubFood.Visible = false;
                         setRecipe.Visible = true;
                         break;
-                }*/
+                }
             }
         }
 
