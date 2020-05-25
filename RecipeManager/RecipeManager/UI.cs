@@ -44,7 +44,7 @@ namespace RecipeManager
         }
 
         //레시피 보이기
-        private void showRecipeList()
+        public void showRecipeList()
         {
             recipeList.Rows.Clear();
 
@@ -64,7 +64,6 @@ namespace RecipeManager
                 if (name.Contains(targetName))
                     recipeList.Rows.Add(name, recipeTitle[name]);
             }
-
         }
 
         private Dictionary<string, string> SetRecipeTitle()
@@ -111,6 +110,7 @@ namespace RecipeManager
         {
             lbRecipe.Visible = true;
             createRecipe.Visible = false;
+            btnPreContent.Enabled = false;
             btnNextContent.Enabled = true;
 
             int selectRow = e.RowIndex;
@@ -215,13 +215,17 @@ namespace RecipeManager
                 }
             }
         }
-
+        bool isAddRecipe = false;
         private void btnCreateRecipe_Click(object sender, EventArgs e)
         {
-            CreateRecipe mainFoodPanel = new CreateRecipe(setMainFood, "주재료");
-            CreateRecipe subFoodPanel = new CreateRecipe(setSubFood, "소스");
-            CreateRecipe recipePanel = new CreateRecipe("레시피", setRecipe, createRecipe, setMainFood, setSubFood);
+            if (!isAddRecipe)
+            {
+                CreateRecipe mainFoodPanel = new CreateRecipe(setMainFood, "주재료");
+                CreateRecipe subFoodPanel = new CreateRecipe(setSubFood, "소스");
+                CreateRecipe recipePanel = new CreateRecipe(this, "레시피", setRecipe, createRecipe, setMainFood, setSubFood);
 
+                isAddRecipe = true;
+            }
             maxPage = 4;
             page = 1;
 
@@ -234,6 +238,18 @@ namespace RecipeManager
             setMainFood.Visible = false;
             setSubFood.Visible = false;
             setRecipe.Visible = false;
+        }
+
+        public void RefreshList()
+        {
+            isAddRecipe = false;
+
+            showRecipeList();
+            setCategory();
+
+            lbRecipe.Visible = true;
+            createRecipe.Visible = false;
+
         }
 
         private void setLevel_SelectedIndexChanged(object sender, EventArgs e)

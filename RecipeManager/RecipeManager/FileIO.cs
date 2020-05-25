@@ -12,7 +12,6 @@ namespace RecipeManager
     class FileIO
     {
         string curDir;
-        string path;
         DirectoryInfo dir;
         FileInfo[] files;
         List<List<string>> fileContent;
@@ -67,7 +66,7 @@ namespace RecipeManager
             return fileContent;
         }
 
-        public void SaveFile(RecipeData data)
+        public bool SaveFile(RecipeData data)
         {
             string path = curDir + @"\recipe\" + data.name + ".csv";
 
@@ -106,10 +105,13 @@ namespace RecipeManager
                 fs.Close();
 
                 MessageBox.Show("저장 했습니다.");
+
+                return true;
             }
             catch(Exception e)
             {
                 MessageBox.Show("저장에 실패했습니다.");
+                return false;
             }
         }
     }
