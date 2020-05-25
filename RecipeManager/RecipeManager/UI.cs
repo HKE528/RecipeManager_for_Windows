@@ -39,7 +39,8 @@ namespace RecipeManager
             {
                 string category = recipe[(int)DataIndex.Category].Split(',')[0];
 
-                CategoryCombo.Items.Add(category);
+                if(!CategoryCombo.Items.Contains(category))
+                    CategoryCombo.Items.Add(category);
             }
         }
 
@@ -250,7 +251,6 @@ namespace RecipeManager
 
         public void RefreshList()
         {
-            Console.WriteLine("새로고침");
 
             lbRecipe.Visible = true;
             createRecipe.Visible = false;
