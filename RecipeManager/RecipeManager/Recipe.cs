@@ -34,14 +34,10 @@ namespace RecipeManager
             {
                 return _recipeContents;
             }
-            set
-            {
-                updateAllRecipeContents();
-            }
         }
 
         //레시피 파일 가져와 초기화
-        private void updateAllRecipeContents()
+        public void updateAllRecipeContents()
         {
             _recipeContents = new FileIO().GetFileContent();
         }

@@ -169,17 +169,6 @@ namespace RecipeManager
             {
                 switch (page)
                 {
-                    /*
-                    case 1:
-                        setMainFood.Visible = false;
-                        break;
-                    case 2:
-                        setSubFood.Visible = false;
-                        break;
-                    case 3:
-                        setRecipe.Visible = false;
-                        break;
-                      */
                     case 1:
                         setMainFood.Visible = false;
                         setSubFood.Visible = false;
@@ -218,20 +207,6 @@ namespace RecipeManager
             //레시피 추가 상태 일때
             else if (createRecipe.Visible == true)
             {
-                /*
-                switch (page)
-                {
-                    case 2:
-                        setMainFood.Visible = true;
-                        break;
-                    case 3:
-                        setSubFood.Visible = true;
-                        break;
-                    case 4:
-                        setRecipe.Visible = true;
-                        break;
-                }*/
-                
                 switch (page)
                 {
                     case 2:
@@ -271,6 +246,24 @@ namespace RecipeManager
             setMainFood.Visible = false;
             setSubFood.Visible = false;
             setRecipe.Visible = false;
+        }
+
+        public void RefreshList()
+        {
+            Console.WriteLine("새로고침");
+
+            lbRecipe.Visible = true;
+            createRecipe.Visible = false;
+
+            btnPreContent.Enabled = false;
+            btnNextContent.Enabled = false;
+
+            recipe.updateAllRecipeContents();
+            setCategory();
+            showRecipeList();
+
+            CategoryCombo.SelectedIndex = 0;
+            orderByCombo.SelectedIndex = 0;
         }
 
         private void setLevel_SelectedIndexChanged(object sender, EventArgs e)
