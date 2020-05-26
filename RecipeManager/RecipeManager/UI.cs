@@ -312,7 +312,7 @@ namespace RecipeManager
             }
 
             RefreshPanel();
-
+            SetCrecateRecipePanel();
             /*
             CreateRecipe mainFoodPanel = new CreateRecipe(setMainFood, "주재료");
             CreateRecipe subFoodPanel = new CreateRecipe(setSubFood, "소스");
@@ -322,7 +322,7 @@ namespace RecipeManager
             */
             UpdateRecipe update = new UpdateRecipe(curContent, this, createRecipe, setMainFood, setSubFood, setRecipe);
 
-            SetCrecateRecipePanel();
+            
         }
     }
 }
