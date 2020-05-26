@@ -147,9 +147,10 @@ namespace RecipeManager
             lbRecipe.Text += " 주재표" + Environment.NewLine;
             foreach (var food in curContent[(int)DataIndex.Main].Split(','))
             {
-                lbRecipe.Text += (i++).ToString() + ". " + food + Environment.NewLine;
+                if(food.Length != 0)
+                    lbRecipe.Text += (i++).ToString() + ". " + food + Environment.NewLine;
             }
-            if (curContent[(int)DataIndex.Sub].Split(',')[0] != "")
+            if (curContent[(int)DataIndex.Sub].Split(',')[0] != "\"\"")
             {
                 i = 1;
                 lbRecipe.Text += Environment.NewLine + Environment.NewLine;
@@ -273,9 +274,15 @@ namespace RecipeManager
             orderByCombo.SelectedIndex = 0;
         }
 
-        private void setLevel_SelectedIndexChanged(object sender, EventArgs e)
+        private void btnUpdateRecipe_Click(object sender, EventArgs e)
         {
+            if(curContent == null)
+            {
+                MessageBox.Show("업데이트할 항목을 선택하세요!");
+                return;
+            }
 
+            UpdateRecipe update = new UpdateRecipe(curContent);
         }
     }
 }
