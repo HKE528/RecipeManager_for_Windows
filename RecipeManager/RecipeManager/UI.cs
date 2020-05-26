@@ -237,11 +237,19 @@ namespace RecipeManager
             }
         }
 
+        bool isCreateRecipe = false;
         private void btnCreateRecipe_Click(object sender, EventArgs e)
         {
-            CreateRecipe mainFoodPanel = new CreateRecipe(setMainFood, "주재료");
-            CreateRecipe subFoodPanel = new CreateRecipe(setSubFood, "소스");
-            CreateRecipe recipePanel = new CreateRecipe(this, "레시피", setRecipe, createRecipe, setMainFood, setSubFood);
+            RefreshPanel();
+
+            if (!isCreateRecipe)
+            {
+                isCreateRecipe = true;
+
+                CreateRecipe mainFoodPanel = new CreateRecipe(setMainFood, "주재료");
+                CreateRecipe subFoodPanel = new CreateRecipe(setSubFood, "소스");
+                CreateRecipe recipePanel = new CreateRecipe(this, "레시피", setRecipe, createRecipe, setMainFood, setSubFood);
+            }
 
             SetCrecateRecipePanel();
         }
@@ -272,6 +280,7 @@ namespace RecipeManager
 
         public void RefreshList()
         {
+            isCreateRecipe = false;
 
             lbRecipe.Visible = true;
             createRecipe.Visible = false;
@@ -287,6 +296,13 @@ namespace RecipeManager
             orderByCombo.SelectedIndex = 0;
         }
 
+        private void RefreshPanel()
+        {
+            CreateRecipe recipePanel = new CreateRecipe(this, "레시피", setRecipe, createRecipe, setMainFood, setSubFood);
+            recipePanel.PanelRefresh();
+            recipePanel.Close();
+        }
+
         private void btnUpdateRecipe_Click(object sender, EventArgs e)
         {
             if(curContent == null)
@@ -295,13 +311,18 @@ namespace RecipeManager
                 return;
             }
 
-            SetCrecateRecipePanel();
+            RefreshPanel();
 
+            /*
             CreateRecipe mainFoodPanel = new CreateRecipe(setMainFood, "주재료");
             CreateRecipe subFoodPanel = new CreateRecipe(setSubFood, "소스");
             CreateRecipe recipePanel = new CreateRecipe(this, "레시피", setRecipe, createRecipe, setMainFood, setSubFood);
 
             UpdateRecipe update = new UpdateRecipe(curContent, createRecipe, mainFoodPanel, subFoodPanel, recipePanel);
+            */
+            UpdateRecipe update = new UpdateRecipe(curContent, this, createRecipe, setMainFood, setSubFood, setRecipe);
+
+            SetCrecateRecipePanel();
         }
     }
 }
