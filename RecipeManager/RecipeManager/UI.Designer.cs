@@ -58,6 +58,7 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.lbRecipe = new System.Windows.Forms.Label();
             this.btnUpdateRecipe = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
             this.recipeListPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.recipeList)).BeginInit();
             this.panel1.SuspendLayout();
@@ -151,6 +152,7 @@
             // 
             // funcBarPanel
             // 
+            this.funcBarPanel.Controls.Add(this.btnDelete);
             this.funcBarPanel.Controls.Add(this.btnUpdateRecipe);
             this.funcBarPanel.Controls.Add(this.btnCreateRecipe);
             this.funcBarPanel.Location = new System.Drawing.Point(1038, 10);
@@ -420,6 +422,17 @@
             this.btnUpdateRecipe.UseVisualStyleBackColor = true;
             this.btnUpdateRecipe.Click += new System.EventHandler(this.btnUpdateRecipe_Click);
             // 
+            // btnDelete
+            // 
+            this.btnDelete.Font = new System.Drawing.Font("굴림", 14F);
+            this.btnDelete.Location = new System.Drawing.Point(4, 232);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(117, 108);
+            this.btnDelete.TabIndex = 2;
+            this.btnDelete.Text = "삭제";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
             // UI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
@@ -477,6 +490,7 @@
         private System.Windows.Forms.Panel setSubFood;
         private System.Windows.Forms.Panel setRecipe;
         private System.Windows.Forms.Button btnUpdateRecipe;
+        private System.Windows.Forms.Button btnDelete;
     }
 }
 

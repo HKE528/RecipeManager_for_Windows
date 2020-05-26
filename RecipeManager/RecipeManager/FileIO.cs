@@ -114,5 +114,25 @@ namespace RecipeManager
                 return true;
             }
         }
+
+        public bool FileDelete(RecipeData data)
+        {
+            string path = curDir + @"\recipe\" + data.name + ".csv";
+
+            try
+            {
+                File.Delete(path);
+
+                MessageBox.Show("삭제를 완료했습니다.");
+                
+                return true;
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show("삭제 실패");
+
+                return false;
+            }
+        }
     }
 }

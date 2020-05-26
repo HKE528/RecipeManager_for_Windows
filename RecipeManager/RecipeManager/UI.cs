@@ -321,8 +321,15 @@ namespace RecipeManager
             UpdateRecipe update = new UpdateRecipe(curContent, createRecipe, mainFoodPanel, subFoodPanel, recipePanel);
             */
             UpdateRecipe update = new UpdateRecipe(curContent, this, createRecipe, setMainFood, setSubFood, setRecipe);
+        }
 
-            
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            RecipeData data = new RecipeData();
+            data.name = curContent[(int)DataIndex.Name];
+            (new FileIO()).FileDelete(data);
+
+            RefreshList();
         }
     }
 }
