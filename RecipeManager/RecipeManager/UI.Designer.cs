@@ -443,7 +443,7 @@
             this.Controls.Add(this.funcBarPanel);
             this.Controls.Add(this.recipeListPanel);
             this.Name = "UI";
-            this.Text = "Form1";
+            this.Text = "RecipeManager";
             this.recipeListPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.recipeList)).EndInit();
             this.panel1.ResumeLayout(false);
