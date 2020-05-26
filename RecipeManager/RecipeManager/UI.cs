@@ -243,6 +243,10 @@ namespace RecipeManager
             CreateRecipe subFoodPanel = new CreateRecipe(setSubFood, "소스");
             CreateRecipe recipePanel = new CreateRecipe(this, "레시피", setRecipe, createRecipe, setMainFood, setSubFood);
 
+            SetCrecateRecipePanel();
+        }
+        private void SetCrecateRecipePanel()
+        {
             maxPage = 4;
             page = 1;
 
@@ -255,6 +259,15 @@ namespace RecipeManager
             setMainFood.Visible = false;
             setSubFood.Visible = false;
             setRecipe.Visible = false;
+
+            SetCreateRecipeCategoryBox();
+        }
+        private void SetCreateRecipeCategoryBox()
+        {
+            foreach (var item in CategoryCombo.Items)
+            {
+                comboBox1.Items.Add(item);
+            }
         }
 
         public void RefreshList()
@@ -282,7 +295,13 @@ namespace RecipeManager
                 return;
             }
 
-            UpdateRecipe update = new UpdateRecipe(curContent);
+            SetCrecateRecipePanel();
+
+            CreateRecipe mainFoodPanel = new CreateRecipe(setMainFood, "주재료");
+            CreateRecipe subFoodPanel = new CreateRecipe(setSubFood, "소스");
+            CreateRecipe recipePanel = new CreateRecipe(this, "레시피", setRecipe, createRecipe, setMainFood, setSubFood);
+
+            UpdateRecipe update = new UpdateRecipe(curContent, createRecipe, setMainFood, setSubFood, setRecipe);
         }
     }
 }
