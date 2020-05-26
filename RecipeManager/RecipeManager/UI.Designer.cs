@@ -44,9 +44,9 @@
             this.btnNextContent = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.createRecipe = new System.Windows.Forms.Panel();
-            this.setMainFood = new System.Windows.Forms.Panel();
-            this.setSubFood = new System.Windows.Forms.Panel();
             this.setRecipe = new System.Windows.Forms.Panel();
+            this.setSubFood = new System.Windows.Forms.Panel();
+            this.setMainFood = new System.Windows.Forms.Panel();
             this.inputRecipeTitle = new System.Windows.Forms.TableLayoutPanel();
             this.setTime = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -57,6 +57,7 @@
             this.setLevel = new System.Windows.Forms.ListBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.lbRecipe = new System.Windows.Forms.Label();
+            this.btnUpdateRecipe = new System.Windows.Forms.Button();
             this.recipeListPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.recipeList)).BeginInit();
             this.panel1.SuspendLayout();
@@ -150,6 +151,7 @@
             // 
             // funcBarPanel
             // 
+            this.funcBarPanel.Controls.Add(this.btnUpdateRecipe);
             this.funcBarPanel.Controls.Add(this.btnCreateRecipe);
             this.funcBarPanel.Location = new System.Drawing.Point(1038, 10);
             this.funcBarPanel.Name = "funcBarPanel";
@@ -256,13 +258,13 @@
             this.createRecipe.TabIndex = 3;
             this.createRecipe.Visible = false;
             // 
-            // setMainFood
+            // setRecipe
             // 
-            this.setMainFood.Location = new System.Drawing.Point(0, 0);
-            this.setMainFood.Name = "setMainFood";
-            this.setMainFood.Size = new System.Drawing.Size(572, 697);
-            this.setMainFood.TabIndex = 1;
-            this.setMainFood.Visible = false;
+            this.setRecipe.Location = new System.Drawing.Point(0, 0);
+            this.setRecipe.Name = "setRecipe";
+            this.setRecipe.Size = new System.Drawing.Size(572, 697);
+            this.setRecipe.TabIndex = 1;
+            this.setRecipe.Visible = false;
             // 
             // setSubFood
             // 
@@ -272,13 +274,13 @@
             this.setSubFood.TabIndex = 1;
             this.setSubFood.Visible = false;
             // 
-            // setRecipe
+            // setMainFood
             // 
-            this.setRecipe.Location = new System.Drawing.Point(0, 0);
-            this.setRecipe.Name = "setRecipe";
-            this.setRecipe.Size = new System.Drawing.Size(572, 697);
-            this.setRecipe.TabIndex = 1;
-            this.setRecipe.Visible = false;
+            this.setMainFood.Location = new System.Drawing.Point(0, 0);
+            this.setMainFood.Name = "setMainFood";
+            this.setMainFood.Size = new System.Drawing.Size(572, 697);
+            this.setMainFood.TabIndex = 1;
+            this.setMainFood.Visible = false;
             // 
             // inputRecipeTitle
             // 
@@ -407,6 +409,17 @@
             this.lbRecipe.Text = "lbRecipe";
             this.lbRecipe.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // btnUpdateRecipe
+            // 
+            this.btnUpdateRecipe.Font = new System.Drawing.Font("굴림", 14F);
+            this.btnUpdateRecipe.Location = new System.Drawing.Point(4, 118);
+            this.btnUpdateRecipe.Name = "btnUpdateRecipe";
+            this.btnUpdateRecipe.Size = new System.Drawing.Size(117, 108);
+            this.btnUpdateRecipe.TabIndex = 1;
+            this.btnUpdateRecipe.Text = "수정";
+            this.btnUpdateRecipe.UseVisualStyleBackColor = true;
+            this.btnUpdateRecipe.Click += new System.EventHandler(this.btnUpdateRecipe_Click);
+            // 
             // UI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
@@ -463,6 +476,7 @@
         private System.Windows.Forms.Panel setMainFood;
         private System.Windows.Forms.Panel setSubFood;
         private System.Windows.Forms.Panel setRecipe;
+        private System.Windows.Forms.Button btnUpdateRecipe;
     }
 }
 

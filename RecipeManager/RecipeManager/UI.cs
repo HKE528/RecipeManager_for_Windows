@@ -301,7 +301,7 @@ namespace RecipeManager
             CreateRecipe subFoodPanel = new CreateRecipe(setSubFood, "소스");
             CreateRecipe recipePanel = new CreateRecipe(this, "레시피", setRecipe, createRecipe, setMainFood, setSubFood);
 
-            UpdateRecipe update = new UpdateRecipe(curContent, createRecipe, setMainFood, setSubFood, setRecipe);
+            UpdateRecipe update = new UpdateRecipe(curContent, createRecipe, mainFoodPanel, subFoodPanel, recipePanel);
         }
     }
 }
